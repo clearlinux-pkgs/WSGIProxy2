@@ -4,7 +4,7 @@
 #
 Name     : WSGIProxy2
 Version  : 0.4.2
-Release  : 14
+Release  : 15
 URL      : https://pypi.python.org/packages/source/W/WSGIProxy2/WSGIProxy2-0.4.2.zip
 Source0  : https://pypi.python.org/packages/source/W/WSGIProxy2/WSGIProxy2-0.4.2.zip
 Summary  : UNKNOWN
