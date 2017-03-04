@@ -1,4 +1,5 @@
 PKG_NAME := WSGIProxy2
-URL := https://pypi.python.org/packages/source/W/WSGIProxy2/WSGIProxy2-0.4.2.zip
+URL := http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.3.tar.gz
+
 
 include ../common/Makefile.common
