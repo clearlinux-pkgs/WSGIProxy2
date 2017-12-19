@@ -4,7 +4,7 @@
 #
 Name     : WSGIProxy2
 Version  : 0.4.4
-Release  : 23
+Release  : 24
 URL      : http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.4.tar.gz
 Source0  : http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.4.tar.gz
 Summary  : A WSGI Proxy with various http client backends
