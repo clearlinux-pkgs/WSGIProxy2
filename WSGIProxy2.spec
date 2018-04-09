@@ -4,13 +4,12 @@
 #
 Name     : WSGIProxy2
 Version  : 0.4.4
-Release  : 25
+Release  : 26
 URL      : http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.4.tar.gz
 Source0  : http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.4.tar.gz
 Summary  : A WSGI Proxy with various http client backends
 Group    : Development/Tools
 License  : MIT
-Requires: WSGIProxy2-legacypython
 Requires: WSGIProxy2-python3
 Requires: WSGIProxy2-python
 Requires: requests
@@ -32,19 +31,9 @@ BuildRequires : virtualenv
 %description
 ============
 
-%package legacypython
-Summary: legacypython components for the WSGIProxy2 package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the WSGIProxy2 package.
-
-
 %package python
 Summary: python components for the WSGIProxy2 package.
 Group: Default
-Requires: WSGIProxy2-legacypython
 Requires: WSGIProxy2-python3
 Provides: wsgiproxy2-python
 
@@ -69,25 +58,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507181301
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1523310910
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1507181301
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
