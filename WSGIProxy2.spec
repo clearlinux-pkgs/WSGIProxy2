@@ -4,13 +4,14 @@
 #
 Name     : WSGIProxy2
 Version  : 0.4.4
-Release  : 29
+Release  : 30
 URL      : http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.4.tar.gz
 Source0  : http://pypi.debian.net/WSGIProxy2/WSGIProxy2-0.4.4.tar.gz
 Summary  : A WSGI Proxy with various http client backends
 Group    : Development/Tools
 License  : MIT
 Requires: WSGIProxy2-python3
+Requires: WSGIProxy2-license
 Requires: WSGIProxy2-python
 Requires: requests
 Requires: six
@@ -21,7 +22,6 @@ BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : six
@@ -30,6 +30,14 @@ BuildRequires : virtualenv
 
 %description
 ============
+
+%package license
+Summary: license components for the WSGIProxy2 package.
+Group: Default
+
+%description license
+license components for the WSGIProxy2 package.
+
 
 %package python
 Summary: python components for the WSGIProxy2 package.
@@ -58,11 +66,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523310910
+export SOURCE_DATE_EPOCH=1529094071
 python3 setup.py build -b py3
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/WSGIProxy2
+cp COPYING %{buildroot}/usr/share/doc/WSGIProxy2/COPYING
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -70,6 +80,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/WSGIProxy2/COPYING
 
 %files python
 %defattr(-,root,root,-)
