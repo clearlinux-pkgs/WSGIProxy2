@@ -4,7 +4,7 @@
 #
 Name     : WSGIProxy2
 Version  : 0.4.6
-Release  : 50
+Release  : 51
 URL      : https://files.pythonhosted.org/packages/9e/db/3e8d6877cc12de58ff67eecfab58acc50b2e2803381a06e21c78fa99713c/WSGIProxy2-0.4.6.tar.gz
 Source0  : https://files.pythonhosted.org/packages/9e/db/3e8d6877cc12de58ff67eecfab58acc50b2e2803381a06e21c78fa99713c/WSGIProxy2-0.4.6.tar.gz
 Summary  : A WSGI Proxy with various http client backends
@@ -29,124 +29,7 @@ BuildRequires : urllib3
 BuildRequires : virtualenv
 
 %description
-Installation
 ============
-
-With pip::
-
-  $ pip install WSGIProxy2
-
-Install optionnal backends::
-
-  $ pip install requests restkit urllib3
-
-
-Usage
-=====
-
-Create a proxy::
-
-  >>> from wsgiproxy import HostProxy
-  >>> proxy = HostProxy(application_url)
-
-Then use it. Here is an example with WebOb but you can use it like a classic
-WSGI application::
-
-  >>> from webob import Request
-  >>> req = Request.blank('/form.html')
-  >>> resp = req.get_response(proxy)
-  >>> print(resp.text)
-  <html>...
-  ...</html>
-
-The Proxy application accept some keyword arguments. Those arguments are passed
-to the client during the process.
-
-If no client as specified then python httplib is used. It's recommended to use
-a more robust client able to manage a connection pool and stuff.
-
-Use `urllib3 <http://pypi.python.org/pypi/urllib3>`_::
-
-  >>> proxy = HostProxy(application_url, client='urllib3')
-
-Use `requests <http://pypi.python.org/pypi/requests>`_. This client support response streaming::
-
-  >>> proxy = HostProxy(application_url, client='requests')
-
-Use `restkit <http://pypi.python.org/pypi/restkit>`_. This client support
-request and response streaming but does not support python3 (will be fixed with
-the next release)::
-
-  >>> proxy = HostProxy(application_url, client='restkit') # doctest: +SKIP
-
-
-Changes
-=======
-
-0.4.6 (2019-02-22)
-------------------
-
-- PATCH added into (default) list of allowed methods
-
-
-0.4.5 (2018-09-19)
-------------------
-
-- Allow to use URIs with no path
-
-
-0.4.4 (2017-06-02)
-------------------
-
-- Clean up connection before returning result. This removes some
-  ResourceWarnings when testing
-
-
-0.4.3 (2017-02-17)
-------------------
-
-- Add OPTIONS to defaults allowed methods
-
-- Drop restkit support
-
-- Drop py26 support
-
-
-0.4.2 (2014-12-20)
-------------------
-
-- Undo webob's unquoting to handle paths with percent quoted utf8 characters
-  [Laurence Rowe]
-
-
-0.4.1 (2013-12-21)
-------------------
-
-- Include README_fixt.py in release
-
-
-0.4 (2013-12-21)
-----------------
-
-- fix tests.
-
-- change the way requests iter response
-
-
-0.3 (2013-09-12)
-----------------
-
-Make allowed_methods check optional
-
-0.2
----
-
-Return the data not gzip decoded when using request
-
-0.1
----
-
-Initial release
 
 %package license
 Summary: license components for the WSGIProxy2 package.
@@ -170,7 +53,9 @@ python components for the WSGIProxy2 package.
 Summary: python3 components for the WSGIProxy2 package.
 Group: Default
 Requires: python3-core
-Provides: pypi(WSGIProxy2)
+Provides: pypi(wsgiproxy2)
+Requires: pypi(six)
+Requires: pypi(webob)
 
 %description python3
 python3 components for the WSGIProxy2 package.
@@ -185,8 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582902147
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1583525093
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
